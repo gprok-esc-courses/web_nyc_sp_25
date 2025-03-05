@@ -1,0 +1,27 @@
+h1 {
+    text-align: center;
+    background-color: sandybrown;
+    padding: 15px;
+    margin-bottom: 70px;
+}
+div.article {
+    border: dashed;
+    border-color: blue;
+    border-radius: 2%;
+    margin-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+div#about {
+    text-align: center;
+    background-color: cornsilk;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+p {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.1em;
+}
+body {
+    background-color: aquamarine;
+}
