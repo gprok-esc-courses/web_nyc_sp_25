@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        .answers, .question {
+            margin-left: 45%;
+            text-align: left;
+        }
+    </style>
+</head>
+<body onload="hideAll()">
+    <h1>QUIZ</h1>
+    <div>
+        <button onclick="getQuestions()">Start</button>
+    </div>
+
+    <div id="questionDiv">
+        <p class="question"><b>Question</b>: <span id="question">The question</span></p>
+        <p class="answers">
+           <input type="radio" name="answers" value="0"> <span id="ans1">Answer 1</span>  <br>
+           <input type="radio" name="answers" value="1"> <span id="ans2">Answer 2</span>  <br>
+           <input type="radio" name="answers" value="2"> <span id="ans3">Answer 3</span>  <br>
+           <input type="radio" name="answers" value="3"> <span id="ans4">Answer 4</span> 
+        </p>
+        <p>
+            <button onclick="showNext()" id="nextBtn">Next</button>
+        </p>
+    </div>
+
+    <div id="scoreDiv">
+        <h2>SCORE</h2>
+        <h2><span id="scoreValue">0</span>/5</h2>
+    </div>
+
+    <script>
+        var results = [] 
+        var current = 0
+        var score = 0
+
+        function getQuestions() {
+            current = 0
+            score = 0
+            hideScore()
+            document.getElementById("nextBtn").disabled = false
+            console.log("Getting questions")
+
+            fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+            .then(response => response.json())
+            .then(data => {
+                current = 0
+                results = data['results']
+                showCurrent()
+                displayQuestions()
+            })
+        }
+
+        function checkAnswer() {
+            let selected = document.querySelector('input[name="answers"]:checked').value
+            if(selected == 0) {
+                score++
+            }
+            document.querySelector('input[name="answers"]:checked').checked = false
+        }
+
+        function showNext() {
+            if(current == 4) {
+                checkAnswer()
+                document.getElementById("scoreValue").innerHTML = score
+                displayScore()
+                document.getElementById("nextBtn").disabled = true
+            }
+            else {
+                checkAnswer()
+                current++
+                showCurrent()
+            }
+        }
+
+        function showCurrent() {
+            let result = results[current] 
+            document.getElementById("question").innerHTML = result['question']
+            document.getElementById("ans1").innerHTML = result['correct_answer']
+            document.getElementById("ans2").innerHTML = result['incorrect_answers'][0]
+            document.getElementById("ans3").innerHTML = result['incorrect_answers'][1]
+            document.getElementById("ans4").innerHTML = result['incorrect_answers'][2]
+        }
+
+        function hideAll() {
+            hideQuestions()
+            hideScore()
+        }
+
+        function hideQuestions() {
+            let div = document.getElementById("questionDiv")
+            div.style.display = "None"
+        }
+
+        function hideScore() {
+            let div = document.getElementById("scoreDiv")
+            div.style.display = "None"
+        }
+
+        function displayQuestions() {
+            let div = document.getElementById("questionDiv")
+            div.style.display = "block"
+        }
+
+        function displayScore() {
+            let div = document.getElementById("scoreDiv")
+            div.style.display = "block"
+        }
+    </script>
+
+</body>
+</html>
