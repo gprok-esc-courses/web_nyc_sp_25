@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO {% block title %}{% endblock %}</title>
+
+    <style>
+        nav {
+            text-align: center;
+            background-color: antiquewhite;
+            border-style: solid;
+            border-color: blueviolet;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            background-color: gainsboro;
+            padding: 20px;
+        }
+
+        .warning {
+            background-color: orange;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Todo List</h1>
+        <div class="menu">
+            <a href="/">Home</a> 
+            <a href="/tasks">Tasks</a> 
+            <a href="/completed">Completed</a>
+            <a href="/add/task">Add Task</a>
+        </div>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        &copy; NYC Students 2025
+    </footer>
+</body>
+</html>

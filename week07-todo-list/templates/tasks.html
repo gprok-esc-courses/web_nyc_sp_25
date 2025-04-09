@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+    <h2>Open Tasks</h2>
+
+    <div>
+        {% if total == 0 %}
+            <div class="warning">
+                <h3>No pending tasks found</h3>
+            </div>
+        {% endif %}
+        <table>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task[1] }}</td>
+                <td>{{ task[3] }}</td>
+                <td><a href='/complete/{{ task[0] }}'><button>Done</button></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock %}

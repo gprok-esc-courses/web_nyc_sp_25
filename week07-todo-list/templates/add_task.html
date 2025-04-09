@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Add{% endblock %}
+
+{% block content %}
+    <h2>Add Task</h2>
+
+    <div> 
+        <form method="post" action="/add/task">
+            <input type="text" name="content" placeholder="Task Content" required /> 
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}
