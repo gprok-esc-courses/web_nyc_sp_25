@@ -1,7 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
 <h1>RESTAURANTS</h1>
 
 <h2>{{ cuisine }}</h2>
 
 {% for row in restaurants %}
-    <div>{{ row[1] }}</div>
+    <div><a href='/restaurant/{{ row[0] }}'>{{ row[1] }}</a></div>
 {% endfor %}
+{% endblock %}

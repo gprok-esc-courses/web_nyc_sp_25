@@ -1,3 +1,37 @@
-<h1>Restaurant: Display restaurant's name here</h1>
-<h2>Display cuisine here</h2>
-<div>Display description here</div>
+{% extends 'base.html' %}
+{% block content %}
+<h1>Restaurant: {{ restaurant[1] }}</h1>
+<h2>{{ cuisine[1] }}</h2>
+<div>{{ restaurant[2] }}</div>
+
+{% if session.get("username") %}
+<div>
+    <form action="/add/review" method="post" onsubmit="return checkRate()">
+        <input type="text" value="{{ restaurant[0] }}" hidden name="rid" />
+        <input type="number" placeholder="Rate (1/5)" name="rate" id="rate" /> <br>
+        <input type="text" placeholder="Comment" name="comment" /> <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div>
+    <h3>Reviews</h3>
+    {% for row in reviews %} 
+        <p>{{ row[1] }}, {{ row[2] }}</p>
+    {% endfor %}
+</div>
+
+<script>
+    function checkRate() {
+        rate = document.getElementById("rate").value 
+        console.log(rate)
+        if(rate < 1 || rate > 5) {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+</script>
+{% endif %}
+{% endblock %}

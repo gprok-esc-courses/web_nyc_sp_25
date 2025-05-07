@@ -1,1 +1,6 @@
-<h1>WELCOME</h1>
+{% extends 'base.html' %}
+{% block content %}
+<h1>WELCOME {{ username }}</h1>
+
+<div><a href='/logout'>Logout</div>
+{% endblock %}

@@ -1,11 +1,6 @@
-<h1>RESTAURANT REVIEWS</h1>
+{% extends 'base.html' %}
+{% block content %}
 
-<p>
-    <a href="/restaurants">All Restaurants</a>
-</p>
-<p>
-    <h2>CUISINES</h2>
-    {% for row in cuisines %}
-        <a href="/cuisine/{{ row[0] }}">{{ row[1] }}</a>
-    {% endfor %}
-</p>
+
+<h1>Welcome to the Resstaurant Reviews center</h1>
+{% endblock %}
